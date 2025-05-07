@@ -1,0 +1,12 @@
+{
+  "name": "concurrent-webpack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": {
+    "parallel-webpack": "bin/run.js"
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
