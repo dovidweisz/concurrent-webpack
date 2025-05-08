@@ -32,7 +32,6 @@ const { result } = concurrently(
       env: {
         __CCWP_BUILD_OPTIONS: options,
         CCWP_BUILD_NAME: name,
-        NODE_OPTIONS: "--max_old_space_size=8192",
       },
     })),
   {
