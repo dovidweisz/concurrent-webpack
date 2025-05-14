@@ -30,15 +30,11 @@ const longestNameLength = settings.reduce(
   0
 );
 
-function padName(name) {
-  const padLength = longestNameLength - name.length;
-  return `${name}${Array.prototype.join.call({ length: padLength + 1 }, " ")}`;
-}
 
 const { result } = concurrently(
   settings.map(({ options, name }) => ({
     command: `webpack ${argv.join(" ")}`,
-    name: padName(name),
+    name: name.padEnd(longestNameLength, " "),
     env: {
       __CCWP_BUILD_OPTIONS: options,
       CCWP_BUILD_NAME: name,
