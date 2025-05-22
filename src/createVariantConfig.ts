@@ -14,7 +14,7 @@ export type ConfigCallbackOptions = Variant & {
 
 export type ConfigCallback = (options: ConfigCallbackOptions) => WebpackConfig;
 
-export function createVariantConfig(configCB: ConfigCallback): WebpackConfig | WebpackConfig[] {
+export async function createVariantConfig(configCB: ConfigCallback): Promise<WebpackConfig | WebpackConfig[]> {
   if (process.env.__CCWP_BUILD_OPTIONS) {
     const optionsParams = new URLSearchParams(process.env.__CCWP_BUILD_OPTIONS as string);
     // Object.fromEntries results in Record<string, string>.
@@ -28,7 +28,7 @@ export function createVariantConfig(configCB: ConfigCallback): WebpackConfig | W
 
   // Assuming getVariantSettings returns VariantsSettings or a compatible type.
   // This might need adjustment once getVariantSettings.ts is typed.
-  const variantSettings = getVariantSettings() as VariantsSettings;
+  const variantSettings = await getVariantSettings() as VariantsSettings;
   const variants: Variant[] = createVariants(variantSettings);
   
   // In this path, configCB is called with each Variant.
