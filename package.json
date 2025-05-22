@@ -1,14 +1,36 @@
 {
   "name": "concurrent-webpack",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "concurrent-webpack": "bin/run.js"
+    "concurrent-webpack": "dist/bin/run.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "yarn run clean && rollup -c rollup.config.mjs --bundleConfigAsCjs",
+    "prepublishOnly": "yarn run build"
   },
   "dependencies": {
     "concurrently": "^9.1.2",
     "minimist": "^1.2.8"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/minimist": "^1.2.5",
+    "@types/node": "^22.15.21",
+    "rollup": "^4.41.0",
+    "rollup-plugin-dts": "^6.2.1",
+    "typescript": "^5.8.3"
   }
 }

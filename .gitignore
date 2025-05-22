@@ -1,1 +1,7 @@
 node_modules
+
+# Build output
+dist/
+
+# TypeScript specific
+*.tsbuildinfo
