@@ -1,8 +1,8 @@
-# concurrent-webpack-plugin
+# concurrent-webpack
 
 ## Introduction
 
-`concurrent-webpack-plugin` is a powerful utility designed to simplify the management and execution of multiple, variant-specific Webpack builds. If you need to generate different versions of your application—such as themed builds, builds with different feature flags, or environment-specific bundles (e.g., development, staging, production)—this plugin helps you run these builds concurrently, speeding up your overall build process.
+`concurrent-webpack` is a powerful utility designed to simplify the management and execution of multiple, variant-specific Webpack builds. If you need to generate different versions of your application—such as themed builds, builds with different feature flags, or environment-specific bundles (e.g., development, staging, production)—this plugin helps you run these builds concurrently, speeding up your overall build process.
 
 It leverages a declarative approach for defining build variants and provides a clean way to customize your Webpack configuration for each specific variant.
 
@@ -16,29 +16,29 @@ It leverages a declarative approach for defining build variants and provides a c
 
 ## Installation
 
-You can install `concurrent-webpack-plugin` using either Yarn or npm. Make sure you have Webpack already set up in your project.
+You can install `concurrent-webpack` using either Yarn or npm. Make sure you have Webpack already set up in your project.
 
 **Using Yarn:**
 
 ```bash
-yarn add concurrent-webpack-plugin --dev
+yarn add concurrent-webpack --dev
 ```
 
 **Using npm:**
 
 ```bash
-npm install concurrent-webpack-plugin --save-dev
+npm install concurrent-webpack --save-dev
 ```
 
 It's recommended to install it as a development dependency as it's primarily a build-time tool.
 
 ## Configuration
 
-To use `concurrent-webpack-plugin`, you'll need to configure three main parts: your project's `package.json` to invoke the tool, a `.concurrentWPVariants.json` file to define your build variants, and your `webpack.config.js` to adapt to these variants.
+To use `concurrent-webpack`, you'll need to configure three main parts: your project's `package.json` to invoke the tool, a `.concurrentWPVariants.json` file to define your build variants, and your `webpack.config.js` to adapt to these variants.
 
 ### 1. `package.json` (Executable)
 
-The `concurrent-webpack-plugin` package provides an executable named `concurrent-webpack`. You'll typically use this in the `scripts` section of your `package.json` to trigger your variant builds.
+The `concurrent-webpack` package provides an executable named `concurrent-webpack`. You'll typically use this in the `scripts` section of your `package.json` to trigger your variant builds.
 
 ```json
 // package.json
@@ -74,9 +74,7 @@ The expected structure is an object where each key represents a variant dimensio
 }
 ```
 
-In this example, `concurrent-webpack-plugin` would generate builds for 2 (environments) \* 3 (themes) \* 2 (featureSets) = 12 different variant combinations (e.g., a "development-light-core" build, a "production-blue-extended" build, etc.).
-
-- **Note**: The exact processing of this file (e.g., support for "defaults" or more complex inheritance) depends on the `getVariantSettings` and `createVariants` implementation within the specific version of `concurrent-webpack-plugin` you are using. The structure shown above (`Record<string, (string | number)[]>`) is a common pattern for generating combinations. Please refer to the library's specific typings or source if you encounter issues or need more advanced features.
+In this example, `concurrent-webpack` would generate builds for 2 (environments) \* 3 (themes) \* 2 (featureSets) = 12 different variant combinations (e.g., a "development-light-core" build, a "production-blue-extended" build, etc.).
 
 ### 3. `webpack.config.js`
 
@@ -88,13 +86,7 @@ Your Webpack configuration file needs to be adapted to use the `createVariantCon
 // webpack.config.js
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-// Adjust the import path based on how your project is structured
-// and how concurrent-webpack-plugin is installed/built.
-// Example: const { createVariantConfig } = require('concurrent-webpack-plugin');
-// Example: const { createVariantConfig } = require('../dist/createVariantConfig.js');
-// For this README example, we'll assume it might be available via a relative path to src:
-const { createVariantConfig } = require("../src/createVariantConfig.js");
+const { createVariantConfig } = require("concurrent-webpack");
 
 module.exports = async (env, argv) => {
 	// env: Environment object, will contain __CCWP_BUILD_OPTIONS from the plugin.
@@ -215,11 +207,11 @@ Once you have configured your `package.json`, `.concurrentWPVariants.json`, and 
     All variant builds completed.
     ```
 
-    The exact logging and behavior will depend on the `concurrent-webpack-plugin`'s implementation and your Webpack configuration.
+    The exact logging and behavior will depend on the `concurrent-webpack`'s implementation and your Webpack configuration.
 
 ## API Reference (Key Exports)
 
-This section provides a brief overview of the primary exports and types you'll interact with when configuring your Webpack builds with `concurrent-webpack-plugin`.
+This section provides a brief overview of the primary exports and types you'll interact with when configuring your Webpack builds with `concurrent-webpack`.
 
 ### `createVariantConfig(configCB: ConfigCallback): Promise<WebpackConfig | WebpackConfig[]>`
 
