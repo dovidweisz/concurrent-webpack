@@ -1,20 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = (env, argv) => {
-  const __CCWP_BUILD_OPTIONS = env.__CCWP_BUILD_OPTIONS
-    ? new URLSearchParams(env.__CCWP_BUILD_OPTIONS)
-    : null;
-  const variantOptions = __CCWP_BUILD_OPTIONS
-    ? Object.fromEntries(__CCWP_BUILD_OPTIONS.entries())
-    : {};
-  
-  // Log variant options for debugging
-  if (Object.keys(variantOptions).length >0) {
-    console.log('Building with variant options:', variantOptions);
-  }
 
 
+function createWebpackConfig({theme}, argv) {
   return {
     mode: argv.mode || 'development',
     entry: './src/index.js',
@@ -54,4 +43,8 @@ module.exports = (env, argv) => {
       port: 9000,
     },
   };
-};
+}
+
+module.exports = (env, argv) => {
+  return createVariantConfig(variantSettings => createWebpackConfig(variantSettings, argv));
+}
