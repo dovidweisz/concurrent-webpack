@@ -7,7 +7,7 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "concurrent-webpack": "dist/bin/run.js"
+    "concurrent-webpack": "dist/bin/run.cjs"
   },
   "files": [
     "dist",
