@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-// import minimist from "minimist"; // Original script has this commented out
 import concurrently, { ConcurrentlyCommandInput } from "concurrently";
 import { getVariantSettings } from "../src/getVariantSettings"; // Adjusted path, assuming VariantsSettings export
 import {

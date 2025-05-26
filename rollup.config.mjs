@@ -39,7 +39,7 @@ export default [
 		input: "bin/run.ts",
 		output: [
 			{
-				file: "dist/bin/run.js", // Output path for the binary
+				file: "dist/bin/run.cjs", // Output path for the binary
 				format: "cjs",
 				sourcemap: true,
 				banner: "#!/usr/bin/env node", // Keep the shebang
