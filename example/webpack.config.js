@@ -1,13 +1,15 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { createVariantConfig } = require("concurrent-webpack");
 
 function createWebpackConfig({ theme }, argv) {
 	return {
 		mode: argv.mode || "development",
+		stats: true,
 		entry: "./src/index.js",
 		output: {
 			filename: "main.js",
-			path: path.resolve(__dirname, "dist"),
+			path: path.resolve(__dirname, "dist", theme),
 			clean: true,
 		},
 		module: {

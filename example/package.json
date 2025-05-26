@@ -6,7 +6,9 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "node ../bin/run.js"
+    "clean": "rm -rf dist",
+    "concurrent-build": "yarn clean && concurrent-webpack --mode production",
+    "build": "yarn clean && webpack --mode production"
   },
   "dependencies": {
     "react": "^19.1.0",
