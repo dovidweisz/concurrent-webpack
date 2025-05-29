@@ -6,6 +6,8 @@
 
 It leverages a declarative approach for defining build variants and provides a clean way to customize your Webpack configuration for each specific variant.
 
+> **Note:** `concurrent-webpack` is intended as a modern replacement for the now-deprecated `parallel-webpack` package. While it serves a similar purpose—running multiple Webpack builds in parallel—it is **not** a drop-in replacement. One key difference is that `concurrent-webpack` invokes the Webpack CLI directly for each variant, rather than using the Webpack Node API as `parallel-webpack` did. This approach ensures that all standard Webpack CLI arguments and features are fully supported, providing greater compatibility and flexibility with the latest Webpack ecosystem.
+
 ## Features
 
 - **Parallel Builds**: Significantly reduce total build time by running multiple Webpack compilations in parallel.
