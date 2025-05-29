@@ -1,8 +1,26 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { createVariantConfig } = require("concurrent-webpack");
+const webpack = require("webpack");
+
+const themeColors = {
+	light: {
+		background: "#dca",
+		textColor: "#731",
+	},
+	dark: {
+		background: "#333",
+		textColor: "#eee",
+	},
+	blue: {
+		background: "#cde",
+		textColor: "#247",
+	},
+};
 
 function createWebpackConfig({ theme }, argv) {
+	const colors = themeColors[theme] || themeColors.light;
+
 	return {
 		mode: argv.mode || "development",
 		stats: true,
@@ -36,6 +54,12 @@ function createWebpackConfig({ theme }, argv) {
 		plugins: [
 			new HtmlWebpackPlugin({
 				template: "./public/index.html",
+			}),
+			new webpack.DefinePlugin({
+				"process.env.THEME_BACKGROUND": JSON.stringify(
+					colors.background
+				),
+				"process.env.THEME_COLOR": JSON.stringify(colors.textColor),
 			}),
 		],
 		devServer: {
