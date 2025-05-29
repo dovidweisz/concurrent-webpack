@@ -69,19 +69,19 @@ The expected structure is an object where each key represents a variant dimensio
 ```json
 // .concurrentWPVariants.json
 {
-	"environment": ["development", "production"],
+	"devices": ["mobile", "desktop"],
 	"theme": ["light", "dark", "blue"],
 	"featureSet": ["core", "extended"]
 }
 ```
 
-In this example, `concurrent-webpack` would generate builds for 2 (environments) \* 3 (themes) \* 2 (featureSets) = 12 different variant combinations (e.g., a "development-light-core" build, a "production-blue-extended" build, etc.).
+In this example, `concurrent-webpack` would generate builds for 2 (devices) \* 3 (themes) \* 2 (featureSets) = 12 different variant combinations (e.g., a "development-light-core" build, a "production-blue-extended" build, etc.).
 
 ### 3. `webpack.config.js`
 
 Your Webpack configuration file needs to be adapted to use the `createVariantConfig` helper provided by this plugin. This helper allows you to easily access the options for the current variant being built.
 
-`createVariantConfig` is a higher-order function that you call with your configuration-building callback. It returns a `Promise` that resolves to the Webpack configuration object(s).
+> **Note:** You can also use `createVariantConfig` directly by running the Webpack CLI as usual (e.g., `webpack --config webpack.config.js`). In this case, the function returns an array of all variant configurations, which Webpack will build sequentially (not in parallel), since the `concurrent-webpack` binary is not involved. The usage of `createVariantConfig` in your config file remains exactly the same.
 
 ```javascript
 // webpack.config.js
