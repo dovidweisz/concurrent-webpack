@@ -7,8 +7,8 @@
   "private": false,
   "scripts": {
     "clean": "rm -rf dist",
-    "concurrent-build": "yarn clean && concurrent-webpack --mode production",
-    "build": "yarn clean && webpack --mode production"
+    "concurrent-build": "yarn clean && concurrent-webpack --mode production --progress",
+    "build": "yarn clean && webpack --mode production --progress"
   },
   "dependencies": {
     "react": "^19.1.0",

@@ -47,15 +47,14 @@ The `concurrent-webpack` package provides an executable named `concurrent-webpac
 {
 	// ... other package.json content
 	"scripts": {
-		"build:variants": "concurrent-webpack",
+		"build:variants": "concurrent-webpack"
 		// or, if you need to pass additional webpack arguments:
 		// "build:variants": "concurrent-webpack --mode=production",
-		"dev:variants": "concurrent-webpack --watch" // Example for watch mode
 	}
 }
 ```
 
-Any arguments passed after `concurrent-webpack` (like `--mode=production` or `--watch`) are typically forwarded to each underlying Webpack build process.
+Any arguments passed after `concurrent-webpack` (like `--mode=production` or `--progress`) are forwarded to each underlying Webpack build process.
 
 ### 2. `.concurrentWPVariants.json`
 
