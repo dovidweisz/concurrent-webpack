@@ -8,7 +8,7 @@ function createWebpackConfig({ theme }, argv) {
 		stats: true,
 		entry: "./src/index.js",
 		output: {
-			filename: "main.js",
+			filename: "main.[contenthash].js",
 			path: path.resolve(__dirname, "dist", theme),
 			clean: true,
 		},
